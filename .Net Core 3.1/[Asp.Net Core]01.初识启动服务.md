@@ -129,9 +129,20 @@ public class Startup
 
 ## 服务构建
 
-上面我们初步了解了HostBuilder可以配置哪些信息,我们也需要了解服务构建的顺序
+上面我们初步了解了HostBuilder可以配置哪些信息,我们先了解服务构建的顺序
 
 ```C#
+    public static void Main(string[] args)
+    {
+        IHostBuilder hostBuilder = CreateHostBuilder(args);
+        System.Console.WriteLine("-------------------------------");
+        System.Console.WriteLine("Pre Build");
+        IHost host = hostBuilder.Build();
+        System.Console.WriteLine("End Build");
+        System.Console.WriteLine("-------------------------------");
+        host.Run();
+    }
+
    public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .ConfigureHostConfiguration(builder=>
@@ -189,11 +200,15 @@ public class Startup
 我们来看一下它运行的结果
 ```
 ConfigureWebHostDefaults
-ConfigureHostConfiguration
+-------------------------------
+Pre Build
+ConfigureHostConfiguration     
 ConfigureAppConfiguration
 Logging
 ConfigureServices
 Startup.ConfigureServices
+End Build
+-------------------------------
 Startup.Configure
 ``` 
 
