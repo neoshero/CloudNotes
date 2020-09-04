@@ -214,4 +214,6 @@ End Build
 -------------------------------
 Startup.Configure
 ```
+
+将整个运行流程规划一下
 ![Core 运行图](https://raw.githubusercontent.com/neoshero/CloudNotes/master/Images/.Net%20Core%203.1/.Net%20Core%20Run%20Process.svg)
