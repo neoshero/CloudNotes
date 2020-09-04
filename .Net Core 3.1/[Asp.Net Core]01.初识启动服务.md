@@ -28,9 +28,10 @@ public class Program
 Main方法中的三个步骤,CreateHostBuilder、Build、Run它代表运行的三个步骤
 从方法名称可以推测三个方法作用
 * Host.CreateDefaultBuilder:Host的默认配置信息(IWebHostBuilder)
-* Build:创建服务器宿主(IWebHost)
-* Run:启动宿主服务
+* Build:创建WebHost(IWebHost)
+* Run:启动Host
   
+
 ##服务配置
 
 首先我们需要关心它到底有哪些配置服务,查询返回的接口是IHostBuilder
@@ -61,6 +62,7 @@ IHostBuilder 本身为我们了提供了这几种文件的配置信息,我们先
     HostingAbstractionsWebHostBuilderExtensions: 服务器运行环境相关的Api
 我列举出两个拓展类几个重要的方法
 ```C#
+//Web应用程序拓展方法
 public static class WebHostBuilderExtensions
 {
     //配置运行的中间件
@@ -75,6 +77,7 @@ public static class WebHostBuilderExtensions
     public static IWebHostBuilder UseStartup<TStartup>(this IWebHostBuilder hostBuilder)｛｝
 }
 
+//Host相关拓展方法
 public static class HostingAbstractionsWebHostBuilderExtensions
 {
     //设置默认的启动运行路径 默认当前运行项目的路径
@@ -122,7 +125,7 @@ public class Startup
     }
 }
 ```
-这些方法刚好是我们上面IHostBuilder和WebHostBuilderExtensions,说明这个文件不是必须的,我们完全可以在CreateDefaultBuilder上进行配置
+这些方法刚好是我们上面IHostBuilder和WebHostBuilderExtensions类的方法,说明这个文件不是必须的,我们完全可以在CreateDefaultBuilder上进行配置
 将StartUp文件提取出来的理由
 * ConfigureServicese跟我们实际的业务有关系,我们会需要注册一些自己的服务,跟不属于服务器配置范围
 * Congiure是请求中间件管道,我们需要对中间件进行灵活配置,配置分离到这个文件中方便我们的管理
@@ -210,8 +213,5 @@ Startup.ConfigureServices
 End Build
 -------------------------------
 Startup.Configure
-``` 
-
-ConfigureWebHostDefaults:程序首先运行的方法
-Startup.Configure Http请求管道是配置的最后执行方法
-
+```
+![Core 运行图](https://raw.githubusercontent.com/neoshero/CloudNotes/master/Images/.Net%20Core%203.1/.Net%20Core%20Run%20Process.svg)
