@@ -98,7 +98,7 @@ public class KeyBoard {}
 ## 组合关系(Composition)
 他们之间是强的关联关系,彼此之间密不可分,没有公司就没有部门,没有部分就没有公司
 
-![Composition](https://raw.githubusercontent.com/neoshero/CloudNotes/master/Images/UML/Aggregation.png)
+![Composition](https://raw.githubusercontent.com/neoshero/CloudNotes/master/Images/UML/Composition.png)
 ```C#
 public class Company
 {
