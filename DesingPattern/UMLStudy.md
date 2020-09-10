@@ -85,14 +85,16 @@ public class Course
 
 ![Aggregation](https://raw.githubusercontent.com/neoshero/CloudNotes/master/Images/UML/Aggregation.png)
 ```C#
+public class Mouse｛｝
+public class Keyboard {}
+
 public class Computer
 {
     public Mouse Mouse {get;set;}
     public Keyboard Keyboard {get;set;}
 }
 
-public class Mouse｛｝
-public class KeyBoard {}
+
 ```
 
 ## 组合关系(Composition)
